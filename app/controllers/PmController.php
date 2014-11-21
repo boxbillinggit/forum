@@ -37,7 +37,7 @@ class PmController extends ControllerBase
         $userId = $this->session->get('identity');
 
         if ($userId !='') {
-	    $phql = "SELECT *, pm.id as privID, users.name FROM pm INNER JOIN users ON users.id = pm.sender WHERE pm.to='{$userId}' AND folder='0'";
+            $phql = "SELECT *, pm.id as privID, users.name FROM pm INNER JOIN users ON users.id = pm.sender WHERE pm.to='{$userId}' AND folder='0'";
 
             $this->view->pm = $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ);
         } else {
@@ -122,7 +122,7 @@ class PmController extends ControllerBase
         if ($userId !='') {
             $get_message = "SELECT *, pm.id as privID, users.gravatar_id as gravatar, users.name FROM pm INNER JOIN users ON users.id = pm.sender WHERE pm.to='{$userId}' AND pm.id='{$id}'";
             $this->view->message = $this->db->fetchAll($get_message, \Phalcon\Db::FETCH_OBJ);
-		
+
             $get_title = $this->db->fetchAll($get_message, \Phalcon\Db::FETCH_OBJ);
 
             $update = \Phosphorum\Models\Pm::findFirst("id=".(int)$id);
