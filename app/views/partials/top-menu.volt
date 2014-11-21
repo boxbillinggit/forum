@@ -47,6 +47,15 @@
 			</li>
 			{%- endif -%}
 
+			{%- if session.get('identity') -%}
+			<li class="notification-container">
+				{{- link_to('pm', '<span class="glyphicon glyphicon-envelope"></span>', 'title': 'Private Messages') -}}
+				{%- if session.get('identity') -%}
+                <span class="notification-counter">{{ count_pm }}</span>
+				{%- endif -%}
+			</li>
+			{%- endif -%}
+
 			<li class="dropdown">
 
 				<a href="#" class="dropdown-toggle categories-link" data-toggle="dropdown" title="Categories">
