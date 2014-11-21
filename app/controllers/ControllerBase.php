@@ -22,12 +22,12 @@ class ControllerBase extends \Phalcon\Mvc\Controller
             ->getQuery()
             ->execute();
 
-			$userId = $this->session->get('identity');
+            $userId = $this->session->get('identity');
             if ($userId !='') {
             $this->view->count_pm = count($this->db->fetchAll("SELECT *, users.name FROM pm INNER JOIN users ON users.id = pm.sender WHERE pm.read='0' AND pm.to='{$userId}'", \Phalcon\Db::FETCH_OBJ));
-			} else {
-	
-			}
+            } else {
+
+            }
 
             $users = Users::find()->getLast();
             $this->view->setVar("threads", Posts::count());
