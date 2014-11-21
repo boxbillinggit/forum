@@ -42,7 +42,7 @@ class PmController extends ControllerBase
             $this->view->pm = $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ);
         } else {
             $this->flashSession->error('You are not logged');
-            return $this->response->redirect('');	
+            return $this->response->redirect('');
         }
             $this->view->logged = $this->session->get('identity');
     }
@@ -58,12 +58,12 @@ class PmController extends ControllerBase
             $this->view->pm = $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ);
         } else {
             $this->flashSession->error('You are not logged');
-            return $this->response->redirect('');	
+            return $this->response->redirect('');
         }
 
             $this->view->logged = $this->session->get('identity');
     }
-	
+
     public function importantAction()
     {
             $this->tag->setTitle('Private Message - Important');
@@ -75,12 +75,12 @@ class PmController extends ControllerBase
             $this->view->pm = $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ);
         } else {
             $this->flashSession->error('You are not logged');
-            return $this->response->redirect('');	
+            return $this->response->redirect('');
         }
 
             $this->view->logged = $this->session->get('identity');
     }
-	
+
     public function sentAction()
     {
             $this->tag->setTitle('Private Message - Sent');
@@ -92,12 +92,12 @@ class PmController extends ControllerBase
             $this->view->pm = $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ);
         } else {
             $this->flashSession->error('You are not logged');
-            return $this->response->redirect('');	
+            return $this->response->redirect('');
         }
 
             $this->view->logged = $this->session->get('identity');
     }
-	
+
     public function draftsAction()
     {
             $this->tag->setTitle('Private Message - Drafts');
@@ -109,14 +109,14 @@ class PmController extends ControllerBase
             $this->view->pm = $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ);
         } else {
             $this->flashSession->error('You are not logged');
-            return $this->response->redirect('');	
+            return $this->response->redirect('');
         }
 
             $this->view->logged = $this->session->get('identity');
     }
 
     public function showAction($id)
-    {	
+    {
             $userId = $this->session->get('identity');
 
         if ($userId !='') {
