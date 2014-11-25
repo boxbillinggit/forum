@@ -189,26 +189,26 @@ class PmController extends ControllerBase
     public function setAction()
     {
             $this->view->disable();
-            $encode = explode(",",$_POST['id']);
+            $encode = explode(",", $_POST['id']);
 
-            foreach ($encode as $id) {
+        foreach ($encode as $id) {
             $pm[$id] = \Phosphorum\Models\Pm::findFirst("id=".(int)$id);
             $pm[$id]->id = $id;
 
             if ($_POST['params']['read'] == '0') {
-            $pm[$id]->read = '0';
+                $pm[$id]->read = '0';
             }
             if ($_POST['params']['read'] == '1') {
-            $pm[$id]->read = '1';
+                $pm[$id]->read = '1';
             }
             if ($_POST['params']['folder'] == '1') {
-            $pm[$id]->folder = '1';
+                $pm[$id]->folder = '1';
             }
             if ($_POST['params']['folder'] == '0') {
-            $pm[$id]->folder = '0';
+                $pm[$id]->folder = '0';
             }
 
-				$pm[$id]->update();
+    $pm[$id]->update();
             }
 			
 			echo 'finish';
