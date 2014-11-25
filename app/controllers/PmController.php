@@ -208,14 +208,14 @@ class PmController extends ControllerBase
                 $pm[$id]->folder = '0';
             }
 
-    $pm[$id]->update();
-            }
-			
-			echo 'finish';
-	}
+            $pm[$id]->update();
+        }
+
+        echo 'finish';
+    }
 
     public function composeAction()
     {
-     echo 'Compose HTML';  
-	}
+        echo 'Compose HTML';
+    }
 }
