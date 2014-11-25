@@ -39,7 +39,17 @@ class PmController extends ControllerBase
         if ($userId !='') {
             $phql = "SELECT *, pm.id as privID, users.name FROM pm INNER JOIN users ON users.id = pm.sender WHERE pm.to='{$userId}' AND folder='0'";
 
-            $this->view->pm = $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ);
+            $currentPage = (int) $_GET["page"];
+
+            $paginator = new \Phalcon\Paginator\Adapter\NativeArray(
+            array(
+            "data" => $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ),
+            "limit"=> 10,
+            "page" => $currentPage
+            )
+            );
+
+            $this->view->pm = $paginator->getPaginate();
         } else {
             $this->flashSession->error('You are not logged');
             return $this->response->redirect('');
@@ -55,7 +65,17 @@ class PmController extends ControllerBase
         if ($userId !='') {
             $phql = "SELECT *, pm.id as privID, users.name FROM pm INNER JOIN users ON users.id = pm.sender WHERE pm.to='{$userId}' AND folder='1'";
 
-            $this->view->pm = $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ);
+            $currentPage = (int) $_GET["page"];
+
+            $paginator = new \Phalcon\Paginator\Adapter\NativeArray(
+            array(
+            "data" => $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ),
+            "limit"=> 10,
+            "page" => $currentPage
+            )
+            );
+
+            $this->view->pm = $paginator->getPaginate();
         } else {
             $this->flashSession->error('You are not logged');
             return $this->response->redirect('');
@@ -72,7 +92,17 @@ class PmController extends ControllerBase
         if ($userId !='') {
             $phql = "SELECT *, pm.id as privID, users.name FROM pm INNER JOIN users ON users.id = pm.sender WHERE pm.to='{$userId}' AND folder='2'";
 
-            $this->view->pm = $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ);
+            $currentPage = (int) $_GET["page"];
+
+            $paginator = new \Phalcon\Paginator\Adapter\NativeArray(
+            array(
+            "data" => $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ),
+            "limit"=> 10,
+            "page" => $currentPage
+            )
+            );
+
+            $this->view->pm = $paginator->getPaginate();
         } else {
             $this->flashSession->error('You are not logged');
             return $this->response->redirect('');
@@ -89,7 +119,17 @@ class PmController extends ControllerBase
         if ($userId !='') {
             $phql = "SELECT *, pm.id as privID, users.name FROM pm INNER JOIN users ON users.id = pm.sender WHERE pm.to='{$userId}' AND folder='3'";
 
-            $this->view->pm = $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ);
+            $currentPage = (int) $_GET["page"];
+
+            $paginator = new \Phalcon\Paginator\Adapter\NativeArray(
+            array(
+            "data" => $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ),
+            "limit"=> 10,
+            "page" => $currentPage
+            )
+            );
+
+            $this->view->pm = $paginator->getPaginate();
         } else {
             $this->flashSession->error('You are not logged');
             return $this->response->redirect('');
@@ -106,7 +146,17 @@ class PmController extends ControllerBase
         if ($userId !='') {
             $phql = "SELECT *, pm.id as privID, users.name FROM pm INNER JOIN users ON users.id = pm.sender WHERE pm.to='{$userId}' AND folder='4'";
 
-            $this->view->pm = $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ);
+            $currentPage = (int) $_GET["page"];
+
+            $paginator = new \Phalcon\Paginator\Adapter\NativeArray(
+            array(
+            "data" => $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ),
+            "limit"=> 10,
+            "page" => $currentPage
+            )
+            );
+
+            $this->view->pm = $paginator->getPaginate();
         } else {
             $this->flashSession->error('You are not logged');
             return $this->response->redirect('');
@@ -135,4 +185,37 @@ class PmController extends ControllerBase
             return $this->response->redirect('');
         }
     }
+
+    public function setAction()
+    {
+            $this->view->disable();
+            $encode = explode(",",$_POST['id']);
+
+            foreach($encode as $id) {
+            $pm[$id] = \Phosphorum\Models\Pm::findFirst("id=".(int)$id);
+            $pm[$id]->id = $id;
+
+            if ($_POST['params']['read'] == '0') {
+            $pm[$id]->read = '0';
+            }
+            if ($_POST['params']['read'] == '1') {
+            $pm[$id]->read = '1';
+            }
+            if ($_POST['params']['folder'] == '1') {
+            $pm[$id]->folder = '1';
+            }
+            if ($_POST['params']['folder'] == '0') {
+            $pm[$id]->folder = '0';
+            }
+
+				$pm[$id]->update();
+            }
+			
+			echo 'finish';
+	}
+
+    public function composeAction()
+    {
+     echo 'Compose HTML';  
+	}
 }

@@ -393,6 +393,22 @@ ALTER TABLE `topic_tracking`
  ADD PRIMARY KEY (`user_id`);
 
 --
+-- Struktura tabeli dla tabeli `pm`
+--
+DROP TABLE IF EXISTS `pm`; 
+CREATE TABLE IF NOT EXISTS `pm` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sender` int(11) NOT NULL,
+  `to` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `subject` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `message` text CHARACTER SET utf8 NOT NULL,
+  `read` int(1) NOT NULL DEFAULT '0',
+  `folder` enum('0','1','2','3','4') NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+);
+
+--
 -- Table structure for table `users_badges`
 --
 
