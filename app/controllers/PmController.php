@@ -42,7 +42,7 @@ class PmController extends ControllerBase
             $currentPage = (int) $_GET["page"];
 
             $paginator = new \Phalcon\Paginator\Adapter\NativeArray(
-            array(
+                array(
             "data" => $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ),
             "limit"=> 10,
             "page" => $currentPage
@@ -68,7 +68,7 @@ class PmController extends ControllerBase
             $currentPage = (int) $_GET["page"];
 
             $paginator = new \Phalcon\Paginator\Adapter\NativeArray(
-            array(
+                array(
             "data" => $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ),
             "limit"=> 10,
             "page" => $currentPage
@@ -95,7 +95,7 @@ class PmController extends ControllerBase
             $currentPage = (int) $_GET["page"];
 
             $paginator = new \Phalcon\Paginator\Adapter\NativeArray(
-            array(
+                array(
             "data" => $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ),
             "limit"=> 10,
             "page" => $currentPage
@@ -122,7 +122,7 @@ class PmController extends ControllerBase
             $currentPage = (int) $_GET["page"];
 
             $paginator = new \Phalcon\Paginator\Adapter\NativeArray(
-            array(
+                array(
             "data" => $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ),
             "limit"=> 10,
             "page" => $currentPage
@@ -149,7 +149,7 @@ class PmController extends ControllerBase
             $currentPage = (int) $_GET["page"];
 
             $paginator = new \Phalcon\Paginator\Adapter\NativeArray(
-            array(
+                array(
             "data" => $this->db->fetchAll($phql, \Phalcon\Db::FETCH_OBJ),
             "limit"=> 10,
             "page" => $currentPage
@@ -191,7 +191,7 @@ class PmController extends ControllerBase
             $this->view->disable();
             $encode = explode(",",$_POST['id']);
 
-            foreach($encode as $id) {
+            foreach ($encode as $id) {
             $pm[$id] = \Phosphorum\Models\Pm::findFirst("id=".(int)$id);
             $pm[$id]->id = $id;
 
